@@ -1,0 +1,119 @@
+<!-- Main marketplace page, has information of all the posts -->
+
+<%- include('header.ejs') %>
+<div class="uk-text-center uk-margin-medium-top">
+  <h1 class="uk-text-lead uk-text-medium">
+    <b>Shopify Dev Challenge — Image Marketplace</b>
+  </h1>
+
+  <h5>
+    Hi <b><%=currentUser%></b>! You have <%=currentUserCredits%> credits to
+    spend.<br />
+    Upload posts to earn a random amount of credits!
+  </h5>
+  <form action="/logout" method="get">
+    <button class="uk-button uk-button-secondary uk-margin-medium-bottom">
+      Logout
+    </button>
+  </form>
+
+  <form action="/posts" enctype="multipart/form-data" method="POST">
+    <label for="caption">Caption: </label>
+    <input type="text" name="caption" required/>
+    <label for="marketplaceItem">Up for sale?: </label>
+    <input type="checkbox" name="marketplaceItem" /><br /><br />
+
+    <label for="price">Price (credits): </label>
+    <input type="text" name="price" /><br /><br />
+
+    <input type="file" name="post" />
+    <input type="submit" value="Upload Post" />
+  </form>
+
+  <div class="uk-button-group">
+    <form
+      action="/"
+      enctype="multipart/form-data"
+      method="get"
+      class="uk-margin-medium-top"
+    >
+      <button class="uk-button uk-button-text uk-margin-medium-right">
+        All Posts
+      </button>
+    </form>
+
+    <form
+      action="/posts/get_myposts"
+      enctype="multipart/form-data"
+      method="get"
+      class="uk-margin-medium-top"
+    >
+      <button class="uk-button uk-button-text uk-margin-medium-right">
+        My Posts
+      </button>
+    </form>
+
+    <form
+      action="/posts/get_marketplace"
+      enctype="multipart/form-data"
+      method="get"
+      class="uk-margin-medium-top"
+    >
+      <button class="uk-button uk-button-text">Marketplace Posts</button>
+    </form>
+  </div>
+
+  <div class="uk-container uk-margin-small-top">
+    <div class="uk-flex uk-flex-wrap uk-flex-around">
+      <% posts.forEach(function(post) { %>
+      <div class="uk-padding-small uk-transition-toggle">
+        <div class="uk-inline-clip uk-transition-toggle uk-light" tabindex="0">
+          <img src="data:image/jpeg;base64,<%=post.imgBinData%>" />
+          <div class="uk-position-center">
+            <div class="uk-transition-fade">
+              <% if (post.price > 0) { %>
+              <h4 class="uk-margin-remove"><%=post.price%> credits</h4>
+              <% } %>
+            </div>
+          </div>
+        </div>
+        <% if (post.caption.length > 0) { %>
+        <h5>
+          <b>Caption: </b><%=post.caption%> | <b> Owner: </b> <%=post.owner%>
+        </h5>
+        <% } else { %>
+        <h5><b> Owner: </b><%=post.owner%></h5>
+        <% } %>
+        <div class="uk-button-group uk-margin-small-bottom">
+          <% if (post.marketplaceItem && !post.currentUserIsOwner) { %>
+          <form action="/buy" method="post">
+            <button
+              name="postId"
+              value="<%=post.id%>"
+              class="uk-button uk-button-default"
+            >
+              Buy Post
+            </button>
+          </form>
+          <% } %> <% if (post.currentUserIsOwner) { %>
+          <form action="/posts/delete" method="post">
+            <button
+              name="postId"
+              value="<%=post.id%>"
+              class="uk-button uk-button-default"
+            >
+              Delete Post
+            </button>
+          </form>
+          <% } %> <% if (!post.marketplaceItem && !post.currentUserIsOwner) { %>
+          <div>
+            <b> Image is not up for sale! </b>
+          </div>
+          <% } %>
+        </div>
+      </div>
+      <% })%>
+    </div>
+  </div>
+</div>
+<%- include('footer.ejs') %>

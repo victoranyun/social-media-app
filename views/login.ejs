@@ -1,0 +1,49 @@
+<!-- Login/landing page, includes registration and login -->
+
+<%- include('header.ejs') %>
+<div class="loginbody">
+  <div class="login uk-align-center">
+    <div class="form" style="text-align: center">
+      <form class="register" action="/register" method="post">
+        <h2>Register an account</h2>
+        <input type="text" placeholder="name" name="name" id="name" required />
+        <input
+          type="text"
+          placeholder="email"
+          name="email"
+          id="email"
+          required
+        />
+        <input
+          type="password"
+          placeholder="password"
+          name="password"
+          id="password"
+          required
+        />
+        <button>CREATE</button>
+        <p class="prompt">Already registered? <a>Log In</a></p>
+      </form>
+      <form action="/login" method="post">
+        <h2>Login to continue</h2>
+        <input
+          type="text"
+          name="email"
+          id="email"
+          placeholder="email"
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="password"
+          required
+        />
+        <button>LOGIN</button>
+        <p class="prompt">Not registered? <a>Register</a></p>
+      </form>
+    </div>
+  </div>
+</div>
+<%- include('footer.ejs') %>

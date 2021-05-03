@@ -1,4 +1,4 @@
-const mongoose = required("mongoose")
+const mongoose = require("mongoose")
 
 const UserSchema = new mongoose.Schema({
     // primary key is automatically created from mongoose/mongodb
@@ -12,14 +12,20 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    name: {
+        type: String,
+        required: true
+    },
     date: {
         type: Date,
         default: Date.now
     },
-    favoritePictureType: {
-        type: String,
-        enum: ['animals', 'nature', 'memes', 'educational'],
+    credits: {
+        type: Number,
+        default: 100,
         required: true
-    },
-    strict: true // makes sure the data is valid and data integrity is preserved
+    }
+    // makes sure the data is valid and data integrity is preserved
 })
+
+module.exports = User = mongoose.model('Users', UserSchema);
