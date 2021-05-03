@@ -42,9 +42,11 @@ npm test
 1. Improve the storage of images. Currently I am storing the image's binary data into MongoDB directly, which isn't considered good practice for scalability. A better alternative would be to use AWS S3 to store the images when the user uploads them and store the location of that S3 file in MongoDB.
 This helps with the horizontal scalability of the application as well as the storage efficiency for MongoDB.
 
-2. Improve the modularity of functions from the routes itself to controllers. This also makes it easier to unit test functions.
+2. Store user sessions in a Redis cluster to reduce overhead on querying the database for session IDs. At the moment, the implementation stores the session data in MongoDB.
 
-3. Add the feature to update posts. This endpoint already exists but given the time constraints, I only implemented the API to update the MongoDB record.
+3. Improve the modularity of functions from the routes itself to controllers. This also makes it easier to unit test functions.
+
+4. Add the feature to update posts. This endpoint already exists but given the time constraints, I only implemented the API to update the MongoDB record.
 
 
 
