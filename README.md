@@ -4,7 +4,7 @@
 2. [ Tech ](#tech)
 3. [ Usage ](#usage)
 4. [ Tests ](#tests)
-5. [ Possible Improvements ](#improvements)
+5. [ Future Improvements ](#improvements)
 
 <a name="intro"></a>
 ## 1. Description
