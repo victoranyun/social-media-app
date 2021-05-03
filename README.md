@@ -28,6 +28,8 @@ npm install
 npm start
 ```
 
+Navigate to http://localhost:3001 using your favorite browser!
+
 <a name="tests"></a>
 ## 4. Tests
 To run all the tests (under /test/)
