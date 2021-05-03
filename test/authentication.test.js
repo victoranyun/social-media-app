@@ -16,7 +16,7 @@ describe('Authentication Controller Testing', function() {
             .get('/')
             .expect(302)
             .expect('Location', '/login');
-        });
+        }).timeout(7500);
     
     });
     
@@ -26,7 +26,7 @@ describe('Authentication Controller Testing', function() {
             return agent
             .get('/login')
             .expect(200);
-        });
+        }).timeout(7500);
     
         it("should allow us to register and redirect us to /login", function() {
             return agent
@@ -35,7 +35,7 @@ describe('Authentication Controller Testing', function() {
             .send({email: testEmail, password: testPass, name: 'test'})
             .expect(302)
             .expect('Location', '/login');
-        });
+        }).timeout(7500);
     });
     
     describe('Authenticating', function() {
@@ -46,7 +46,7 @@ describe('Authentication Controller Testing', function() {
             .send({email: testEmail, password: testPass})
             .expect(302)
             .expect('Location', '/');
-        });
+        }).timeout(7500);
     
         it("should not allow us to login with incorrect credentials + redirect to /login", function() {
             return agent
@@ -55,7 +55,7 @@ describe('Authentication Controller Testing', function() {
             .send({email: 'victoryun1811@gmail.com', password: '123'})
             .expect(302)
             .expect('Location', '/login');
-        })
+        }).timeout(7500);
     
         it("should redirect us to /login after logging out", function() {
             agent
@@ -68,7 +68,7 @@ describe('Authentication Controller Testing', function() {
             return agent.get('/logout')
             .expect(302)
             .expect('Location', '/login');
-        });
+        }).timeout(7500);
     });
 });
 

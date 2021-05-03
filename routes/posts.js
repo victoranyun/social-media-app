@@ -47,7 +47,9 @@ router.post(
         PostModel.marketplaceItem = true;
       } else {
         PostModel.marketplaceItem = false;
+        PostModel.price = null;
       }
+      
       const fileContents = req.file.buffer;
       PostModel.imgBinData = fileContents;
       PostModel.owner = req.session.passport.user;
@@ -57,7 +59,7 @@ router.post(
       postOwner = await User.findOne({ _id: req.session.passport.user });
       postOwner.credits += creditsEarned;
       postOwner.save();
-      if (req.accepts("application/json")) {
+      if (req.get('isTesting')) {
         res.send({ postId: postId });
       } else {
         res.render("status", {

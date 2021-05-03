@@ -67,7 +67,7 @@ describe('Posts Controller Testing', function() {
             .post('/posts')
             .attach("post", path.resolve(__dirname, "test_img.png"))
             .field('caption', 'test image')
-            .set('Accept', 'application/json')
+            .set('isTesting', 'true')
             .then(function (response) {
                 if (response.statusCode == 200) {
                     postId = response.body.postId;
