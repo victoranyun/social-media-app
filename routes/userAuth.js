@@ -17,7 +17,7 @@ router.post('/register', (req, res, next) => {
         if (error) {
             throw error;
         }
-        bcrypt.hash(registeredUser.password, salt, (error, hash) => {
+        bcrypt.hash(registeredUser.password, salt, (error, hash) => { // hashing the password
             if (error) {
                 throw error;
             }

@@ -14,10 +14,10 @@ router.get("/", async (req, res, next) => {
       return res.redirect("/login");
     }
     currentUser = await User.findOne({ _id: req.session.passport.user });
-    result = await Post.find({}).populate("owner");
+    result = await Post.find({}).populate("owner"); // get all posts
     dataObj = postsController.postMapper(result, req.session.passport.user);
     res.render("index", {
-      posts: dataObj.reverse(),
+      posts: dataObj.reverse(), // to get the latest posts
       currentUserCredits: currentUser.credits,
       currentUser: currentUser.name,
     });
@@ -43,6 +43,7 @@ router.post(
       const creditsEarned = random.int(0, 100);
       var postId = mongoose.Types.ObjectId();
 
+      // performing a check on the checkbox for "up for sale"
       if (req.body.marketplaceItem === "on") {
         PostModel.marketplaceItem = true;
       } else {
@@ -50,12 +51,13 @@ router.post(
         PostModel.price = null;
       }
       
-      const fileContents = req.file.buffer;
+      const fileContents = req.file.buffer; // image's binary data
       PostModel.imgBinData = fileContents;
       PostModel.owner = req.session.passport.user;
       PostModel._id = postId;
       PostModel.save();
 
+      // transferring the credits to the poster (lottery)
       postOwner = await User.findOne({ _id: req.session.passport.user });
       postOwner.credits += creditsEarned;
       postOwner.save();
