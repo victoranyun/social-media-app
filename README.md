@@ -22,8 +22,8 @@ I used a Node.js/Express.js/Mongo.DB stack along with rendering with EJS. I styl
 ## 3. Usage
 
 ```bash
-git clone https://github.com/victoranyun/Shopify-Backend-Dev-Challenge
-cd Shopify-Backend-Dev-Challenge
+git clone https://github.com/victoranyun/social-media-app
+cd social-media-app
 npm install
 npm start
 ```
