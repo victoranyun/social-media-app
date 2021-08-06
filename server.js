@@ -14,7 +14,7 @@ const marketplace = require('./routes/marketplace');
 // adding constants
 const PORT = process.env.PORT || 3001;
 // not a good practice to hardcode the MONGO_URI, but this is for demo purposes
-const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://admin:ShopifyDevChallenge@cluster.p19lv.mongodb.net/shopify?retryWrites=true&w=majority"
+const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://admin:fmUn8FLWdAW0Lu4Z@cluster0.hhwk7.mongodb.net/socialmedia?retryWrites=true&w=majority"
 
 // connecting to mongodb
 mongoose.connect(MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
