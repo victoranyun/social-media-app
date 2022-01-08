@@ -1,4 +1,4 @@
-# Social Media App
+# Virtual Marketplace App
 
 1. [ Introduction ](#intro)
 2. [ Tech ](#tech)
