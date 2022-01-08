@@ -1,4 +1,4 @@
-# Image Repo App
+# Social Media App
 
 1. [ Introduction ](#intro)
 2. [ Tech ](#tech)
